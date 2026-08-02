@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, GlobeAlt, UserCircle } from "lucide-react"; // Placeholders for icons
+import { Search, Globe, UserCircle } from "lucide-react"; // Placeholders for icons
 
 export default function Home() {
   // Animation settings for the central hero block
