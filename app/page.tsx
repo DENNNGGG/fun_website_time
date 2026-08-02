@@ -12,13 +12,13 @@ export default function Home() {
       {/* 2. Editorial Typography */}
       <header className="text-center z-10 max-w-3xl">
         <h1 className="text-5xl md:text-7xl tracking-tight font-light leading-tight">
-          <span className="font-serif italic text-pink-300 font-normal">the</span>{" "}
-          <span className="font-serif uppercase tracking-widest font-semibold">Browser</span>{" "}
+          <span className="font-serif italic text-pink-300 font-normal">shitty</span>{" "}
+          <span className="font-serif uppercase tracking-widest font-semibold">Vibecoded</span>{" "}
           <br />
-          Company
+          Website
         </h1>
         <p className="mt-6 text-lg md:text-xl text-neutral-400 font-normal max-w-xl mx-auto">
-          An internet designed for human curiosity, not engagement algorithms.
+          I've not much to put here but it's kinda funny
         </p>
       </header>
 
@@ -32,9 +32,9 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <span className="text-xs uppercase tracking-widest text-pink-400 font-medium">New Release</span>
-        <h3 className="text-2xl font-serif mt-2 mb-3">Meet Arc 2.0</h3>
+        <h3 className="text-2xl font-serif mt-2 mb-3">Bars bars bars bars</h3>
         <p className="text-sm text-neutral-300 leading-relaxed">
-          A quieter, faster web environment crafted with customized spaces, boosted layouts, and native AI integration.
+          I tried to have Gemini make a template and it lowk did not cook at all
         </p>
       </motion.div>
 
