@@ -53,7 +53,7 @@ export default function Home() {
       >
         {/* Placeholder for the central SVG logo */}
         <motion.div variants={itemVariants} className="logo-placeholder w-20 h-20 bg-neutral-200 rounded-full flex items-center justify-center border border-neutral-300">
-          <GlobeAlt className="w-10 h-10 text-neutral-400" />
+          <Globe className="w-10 h-10 text-neutral-400" />
           <span className="sr-only">THE BROWSER COMPANY Logo</span>
         </motion.div>
 
@@ -114,7 +114,7 @@ export default function Home() {
       <footer className="w-full pb-6 grid grid-cols-5 items-end text-[10px] md:text-[11px] tracking-widest font-semibold text-[#56595e] uppercase">
         {/* Col 1: Placeholder for globe icon */}
         <div className="justify-self-start text-base pb-1">
-          <GlobeAlt className="w-5 h-5 text-neutral-400" />
+          <Globe className="w-5 h-5 text-neutral-400" />
         </div>
 
         {/* Col 2: BC NY placeholder */}
