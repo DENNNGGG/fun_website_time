@@ -155,15 +155,15 @@ export default function TabPage({ params }: PageProps) {
       </div>
 
       {/* -------------------------------------------------------------
-          BACK LINK
+          CONTACT ME MAILTO LINK
           ------------------------------------------------------------- */}
       <div className="z-10 pt-4">
-        <Link
-          href="/"
+        <a
+          href="mailto:deeradobe@gmail.com"
           className="text-[11px] font-semibold tracking-widest uppercase text-[#3c2a3e] hover:text-black transition-colors underline underline-offset-4"
         >
-          ← Back to Home
-        </Link>
+          Contact Me →
+        </a>
       </div>
 
       {/* -------------------------------------------------------------
