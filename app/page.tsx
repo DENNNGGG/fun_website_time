@@ -8,19 +8,19 @@ import Link from "next/link";
 // Added route slugs for each character/tab
 const backgroundPanels = [
   {
-    src: "/Aqua_bg_cropped.jpg",
+    src: "/aqua.png",
     alt: "Aqua Hoshino",
     slug: "aqua",
   },
   {
-    src: "/Kana_bg_cropped.jpg",
-    alt: "Kana Arima",
-    slug: "kana",
+    src: "/akane.png",
+    alt: "Akane kurosawa",
+    slug: "akane",
   },
   {
-    src: "/Ai_bg_cropped.jpg",
-    alt: "Ai Hoshino",
-    slug: "ai",
+    src: "/ruby.png",
+    alt: "Ruby Hoshino",
+    slug: "ruby",
   },
 ];
 
