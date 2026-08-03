@@ -21,7 +21,7 @@ const subpageData: Record<
     alt: "Aqua GIF",
     title: "Welcome",
     marqueeText: "AQUA HOSHINO — GOROU AMAMIYA — WELCOME — IT BEGINS - ",
-    body: "Welcome to Aqua's space. Paste your blog post, thoughts, or write-ups here. The container expands naturally as you add more text while maintaining readable line lengths and soft typography.",
+    body: "Hi, I’m not really sure how you made it here. Why are you looking this shit up anyway? Anyways, this was pretty fun to vibecode, although it’ll probably be embarrassing in retrospect and I imagine no one’s really going to look at it anyway. I promise I don’t have an Obsession (2026) with OnK.",
   },
   akane: {
     gifSrc: "/akane.gif",
