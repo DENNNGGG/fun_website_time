@@ -7,16 +7,16 @@ import Image from "next/image";
 // Reduced to 3 banners for a cleaner layout
 const backgroundPanels = [
   {
-    src: "/aqua.png",
+    src: "/Aqua_bg_cropped.jpg",
     alt: "Aqua Hoshino",
   },
   {
-    src: "/akane.png",
-    alt: "Akane Kurosawa",
+    src: "/Kana_bg_cropped.jpg",
+    alt: "Kana Arima",
   },
   {
-    src: "/ruby.png",
-    alt: "Ruby Hoshino",
+    src: "/Ai_bg_cropped.jpg",
+    alt: "Ai Hoshino",
   },
 ];
 
@@ -25,21 +25,22 @@ export default function Home() {
   const [isIntroComplete, setIsIntroComplete] = useState(false);
 
   return (
-    <div className="relative min-h-screen font-sans overflow-hidden bg-[#F0EFEB]">
+    <div className="relative min-h-screen font-sans overflow-hidden bg-black">
       
       {/* -------------------------------------------------------------
-          OVERHAULED LAYER: 3-HORIZONTAL-BANNER DYNAMIC BACKGROUND
+          3-HORIZONTAL-BANNER DYNAMIC BACKGROUND (SEAMLESS GAP-FREE)
           ------------------------------------------------------------- */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={isIntroComplete ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed inset-0 z-0 flex flex-col w-full h-full overflow-hidden"
+        className="fixed inset-0 z-0 flex flex-col w-full h-full overflow-hidden bg-black"
       >
         {backgroundPanels.map((panel, idx) => (
           <motion.div
             key={idx}
-            className="relative w-full h-1/3 overflow-hidden border-b last:border-b-0 border-white/10 group cursor-pointer"
+            /* Removed border-b and added negative bottom margin (-mb-[1px]) to cover sub-pixel gaps */
+            className="relative w-full h-1/3 overflow-hidden group cursor-pointer -mb-[1px] last:mb-0"
             whileHover={{ 
               scale: 1.01, // Subtle expansion on hover
               zIndex: 10,  // Elevates hovered banner above others
@@ -62,6 +63,9 @@ export default function Home() {
               />
             </motion.div>
             
+            {/* Subtle inner top line for visual separation without creating spacing gaps */}
+            <div className="absolute inset-x-0 top-0 h-[1px] bg-white/10 pointer-events-none z-10" />
+
             {/* Dimming Overlay */}
             <div className="absolute inset-0 bg-neutral-900/20 group-hover:bg-neutral-900/0 transition-colors duration-700 pointer-events-none" />
           </motion.div>
@@ -69,7 +73,7 @@ export default function Home() {
       </motion.div>
 
       {/* -------------------------------------------------------------
-          1. INTRO OVERLAY (Unchanged)
+          1. INTRO OVERLAY
          ------------------------------------------------------------- */}
       <AnimatePresence>
         {!isIntroComplete && (
