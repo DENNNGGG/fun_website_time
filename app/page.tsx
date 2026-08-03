@@ -34,8 +34,35 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F0EFEB] text-[#1a1c1d] font-sans px-6 md:px-12 flex flex-col items-center justify-between overflow-hidden">
+    // The main container. We remove the solid bg-[#F0EFEB] color and text color, 
+    // replacing them with transparency or default text color.
+    <div className="relative min-h-screen text-[#1a1c1d] font-sans px-6 md:px-12 flex flex-col items-center justify-between overflow-hidden">
       
+      {/* -------------------------------------------------------------
+          ADD THIS LAYER: MAIN WEBSITE BACKGROUND IMAGE
+          ------------------------------------------------------------- */}
+      {/* 
+        We use motion.div to smoothly reveal the background after the 
+        intro overlay fades out. 
+      */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isIntroComplete ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} // Smooth background reveal
+        className="fixed inset-0 z-0 pointer-events-none"
+      >
+        <Image
+          src="/Hoshino_Ai.png" // EDIT THIS: Path to your local background image in /public
+          alt="Website Background"
+          fill // Spans the entire screen
+          priority // Loads immediately
+          quality={100} // High quality background
+          className="object-cover" // Aspect ratio handled by cropping
+        />
+        {/* Optional: Add an overlay color if your text is hard to read over the image */}
+        {/* <div className="absolute inset-0 bg-white/20" /> */}
+      </motion.div>
+
       {/* -------------------------------------------------------------
           1. INTRO OVERLAY (Image slowly focuses, then exits)
          ------------------------------------------------------------- */}
@@ -46,6 +73,8 @@ export default function Home() {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            // Important: We MUST keep the background color (#F0EFEB) 
+            // on this overlay layer so it hides the new background until it fades out.
             className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F0EFEB] px-6"
           >
             {/* Blurred image focusing card */}
@@ -87,7 +116,11 @@ export default function Home() {
       {/* -------------------------------------------------------------
           2. MAIN WEBPAGE (Your exact layout, revealed post-intro)
          ------------------------------------------------------------- */}
-      
+      {/* 
+        All main page elements are given z-10 to stay on top of the background.
+        We also ensure their text colors contrast with the new background.
+      */}
+
       {/* 1. Header Area */}
       <motion.header
         initial={{ opacity: 0, y: -10 }}
@@ -114,7 +147,8 @@ export default function Home() {
         variants={containerVariants}
         className="flex-grow flex flex-col items-center justify-center text-center max-w-2xl w-full z-10 space-y-16 mt-[-10vh]"
       >
-        <motion.div variants={itemVariants} className="logo-placeholder w-20 h-20 bg-neutral-200 rounded-full flex items-center justify-center border border-neutral-300">
+        {/* We make the logo placeholder background translucent against the image */}
+        <motion.div variants={itemVariants} className="logo-placeholder w-20 h-20 bg-neutral-200/50 backdrop-blur-sm rounded-full flex items-center justify-center border border-neutral-300">
           <Globe className="w-10 h-10 text-neutral-400" />
           <span className="sr-only">THE BROWSER COMPANY Logo</span>
         </motion.div>
@@ -171,7 +205,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 10 }}
         animate={isIntroComplete ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full pb-6 grid grid-cols-5 items-end text-[10px] md:text-[11px] tracking-widest font-semibold text-[#56595e] uppercase"
+        className="w-full pb-6 grid grid-cols-5 items-end text-[10px] md:text-[11px] tracking-widest font-semibold z-10 text-[#56595e] uppercase"
       >
         <div className="justify-self-start text-base pb-1">
           <Globe className="w-5 h-5 text-neutral-400" />
@@ -183,7 +217,8 @@ export default function Home() {
           NY
         </div>
 
-        <div className="justify-self-center monogram-placeholder w-5 h-5 bg-neutral-200 rounded-full" />
+        {/* Monogram background update for contrast */}
+        <div className="justify-self-center monogram-placeholder w-5 h-5 bg-neutral-200/50 backdrop-blur-sm rounded-full" />
 
         <div className="justify-self-center text-center text-[9px] md:text-[10px] tracking-wider leading-relaxed whitespace-nowrap text-[#8a8d94]">
           THE BROWSER
