@@ -30,16 +30,13 @@ export default function Home() {
   return (
     <div className="relative min-h-screen font-sans overflow-hidden bg-[#F0EFEB]">
       
-      {/* -------------------------------------------------------------
-          TOP-LEFT CLICKABLE LOGO / HOME BUTTON (UNBOXED & ENLARGED)
-          ------------------------------------------------------------- */}
+      {/* TOP-LEFT CLICKABLE LOGO / HOME BUTTON (UNBOXED & ENLARGED) */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={isIntroComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="fixed top-6 left-6 md:top-8 md:left-8 z-20"
       >
-        {/* Enlarged dimensions: w-16 h-16 (mobile) and md:w-20 md:h-20 (desktop) */}
         <Link href="/" className="group block relative w-16 h-16 md:w-20 md:h-20">
           <motion.div
             whileHover={{ scale: 1.08 }}
@@ -47,11 +44,11 @@ export default function Home() {
             className="relative w-full h-full"
           >
             <Image
-              src="/deng.png"
+              src="/logo.png"
               alt="Home Logo"
               fill
               priority
-              className="object-contain" {/* Changed to object-contain so unboxed logo scales cleanly without cropping */}
+              className="object-contain"
             />
           </motion.div>
         </Link>
