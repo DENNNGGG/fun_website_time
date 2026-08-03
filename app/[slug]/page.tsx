@@ -20,7 +20,7 @@ const subpageData: Record<
     gifSrc: "/aqua.gif",
     alt: "Aqua GIF",
     title: "Welcome",
-    marqueeText: "AQUA HOSHINO — GOROU AMAMIYA — WELCOME — IT BEGINS",
+    marqueeText: "AQUA HOSHINO — GOROU AMAMIYA — WELCOME — IT BEGINS - ",
     body: "Welcome to Aqua's space. Paste your blog post, thoughts, or write-ups here. The container expands naturally as you add more text while maintaining readable line lengths and soft typography.",
   },
   akane: {
