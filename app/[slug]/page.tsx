@@ -34,7 +34,7 @@ export default async function TabPage({ params }: PageProps) {
 
   // Get specific page data based on slug, or fallback if unknown slug
   const pageContent = subpageData[slug] || {
-    gifSrc: "/logo.png",
+    gifSrc: "/deng.png",
     alt: "Default Visual",
     title: `${slug} Page`,
   };
