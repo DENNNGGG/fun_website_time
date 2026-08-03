@@ -52,7 +52,7 @@ export default function Home() {
         className="fixed inset-0 z-0 pointer-events-none"
       >
         <Image
-          src="/Hoshino_Ai.png" // EDIT THIS: Path to your local background image in /public
+          src="/Hoshino_Ai_bg.png" // EDIT THIS: Path to your local background image in /public
           alt="Website Background"
           fill // Spans the entire screen
           priority // Loads immediately
