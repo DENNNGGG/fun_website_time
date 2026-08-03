@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,6 +41,21 @@ const backgroundPanels = [
 
 export default function Home() {
   const [isIntroComplete, setIsIntroComplete] = useState(false);
+  const [isAtBottom, setIsAtBottom] = useState(false);
+
+  // Track scroll position to hide arrow at the bottom of the page
+  useEffect(() => {
+    const handleScroll = () => {
+      // 50px buffer zone before true bottom
+      const reachedBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 50;
+      setIsAtBottom(reachedBottom);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="relative min-h-screen font-sans bg-[#F0EFEB] overflow-x-hidden">
@@ -72,16 +87,17 @@ export default function Home() {
       </motion.div>
 
       {/* -------------------------------------------------------------
-          BOTTOM-CENTER FLASHING/BOUNCING MINIMAL DOWN ARROW
+          BOTTOM-CENTER FLASHING DOWN ARROW (HIDES AT BOTTOM)
           ------------------------------------------------------------- */}
       <AnimatePresence>
-        {isIntroComplete && (
+        {isIntroComplete && !isAtBottom && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ 
               opacity: [0.3, 0.9, 0.3], 
               y: [0, 8, 0] 
             }}
+            exit={{ opacity: 0, y: 10 }}
             transition={{
               duration: 2.0,
               repeat: Infinity,
