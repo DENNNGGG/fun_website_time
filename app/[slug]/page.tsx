@@ -34,30 +34,30 @@ As of time of writing, the actual contents of these subpages are under construct
   akane: {
     gifSrc: "/akane.gif",
     alt: "Akane GIF",
-    title: "Akane Kurokawa",
+    title: "Interests",
     marqueeText: "AKANE KUROKAWA — VISUAL EXPERIENCE — GALLERY — ",
-    body: "Welcome to Akane's space. Paste your blog post, thoughts, or write-ups here. The container expands naturally as you add more text while maintaining readable line lengths and soft typography.",
+    body: "Coming soon :p",
   },
   ruby: {
     gifSrc: "/ruby.gif",
     alt: "Ruby GIF",
     title: "Ruby Hoshino",
     marqueeText: "RUBY HOSHINO — VISUAL EXPERIENCE — GALLERY — ",
-    body: "Welcome to Ruby's space. Paste your blog post, thoughts, or write-ups here. The container expands naturally as you add more text while maintaining readable line lengths and soft typography.",
+    body: "Coming soon :p",
   },
   memcho: {
-    gifSrc: "/mem.gif", // Path to public/memcho.gif
+    gifSrc: "/mem.gif", 
     alt: "Memcho GIF",
     title: "Mem-cho",
     marqueeText: "MEM-CHO — VISUAL EXPERIENCE — GALLERY — ",
-    body: "Welcome to Memcho's space. Paste your blog post, thoughts, or write-ups here. The container expands naturally as you add more text while maintaining readable line lengths and soft typography.",
+    body: "Coming soon :p",
   },
   kana: {
     gifSrc: "/kana.gif", // Path to public/kana.gif
     alt: "Kana GIF",
     title: "Kana Arima",
     marqueeText: "KANA ARIMA — VISUAL EXPERIENCE — GALLERY — ",
-    body: "Welcome to Kana's space. Paste your blog post, thoughts, or write-ups here. The container expands naturally as you add more text while maintaining readable line lengths and soft typography.",
+    body: "Coming soon :p",
   },
 };
 
