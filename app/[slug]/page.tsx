@@ -37,6 +37,20 @@ const subpageData: Record<
     marqueeText: "RUBY HOSHINO — VISUAL EXPERIENCE — GALLERY — ",
     body: "Welcome to Ruby's space. Paste your blog post, thoughts, or write-ups here. The container expands naturally as you add more text while maintaining readable line lengths and soft typography.",
   },
+  memcho: {
+    gifSrc: "/mem.gif", // Path to public/memcho.gif
+    alt: "Memcho GIF",
+    title: "Mem-cho",
+    marqueeText: "MEM-CHO — VISUAL EXPERIENCE — GALLERY — ",
+    body: "Welcome to Memcho's space. Paste your blog post, thoughts, or write-ups here. The container expands naturally as you add more text while maintaining readable line lengths and soft typography.",
+  },
+  kana: {
+    gifSrc: "/kana.gif", // Path to public/kana.gif
+    alt: "Kana GIF",
+    title: "Kana Arima",
+    marqueeText: "KANA ARIMA — VISUAL EXPERIENCE — GALLERY — ",
+    body: "Welcome to Kana's space. Paste your blog post, thoughts, or write-ups here. The container expands naturally as you add more text while maintaining readable line lengths and soft typography.",
+  },
 };
 
 // Continuous Marquee Banner Component
