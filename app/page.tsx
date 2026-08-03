@@ -30,6 +30,33 @@ export default function Home() {
   return (
     <div className="relative min-h-screen font-sans overflow-hidden bg-[#F0EFEB]">
       
+      {/* -------------------------------------------------------------
+          TOP-LEFT CLICKABLE LOGO / HOME BUTTON
+          ------------------------------------------------------------- */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={isIntroComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-6 left-6 md:top-8 md:left-8 z-20"
+      >
+        <Link href="/" className="group block relative w-10 h-10 md:w-12 md:h-12">
+          <motion.div
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative w-full h-full rounded-full overflow-hidden border border-white/30 shadow-lg backdrop-blur-md transition-shadow duration-300 group-hover:shadow-xl group-hover:border-white/60"
+          >
+            {/* Replace /logo.png with your logo filename in /public */}
+            <Image
+              src="/deng.png"
+              alt="Home Logo"
+              fill
+              priority
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+          </motion.div>
+        </Link>
+      </motion.div>
+
       {/* 3-HORIZONTAL-BANNER DYNAMIC BACKGROUND */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -89,7 +116,7 @@ export default function Home() {
                 ease: [0.16, 1, 0.3, 1],
               }}
               onAnimationComplete={() => {
-                setTimeout(() => setIsIntroComplete(true), 1200);
+                setTimeout(() => setIsIntroComplete(true), 100);
               }}
               className="relative w-80 md:w-[32rem] aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-purple-900/10"
             >
@@ -109,7 +136,7 @@ export default function Home() {
               transition={{ delay: 0.6, duration: 1 }}
               className="mt-6 text-[10px] md:text-[11px] font-medium tracking-widest uppercase text-[#3c2a3e]"
             >
-              Entering Experience...
+              Loading...
             </motion.p>
           </motion.div>
         )}
