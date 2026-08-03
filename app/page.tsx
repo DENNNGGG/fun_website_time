@@ -33,7 +33,9 @@ export default function Home() {
   return (
     <div className="relative min-h-screen font-sans overflow-hidden bg-[#F0EFEB]">
       
-      {/* TOP-LEFT CLICKABLE LOGO / HOME BUTTON (UNBOXED & ENLARGED) */}
+      {/* -------------------------------------------------------------
+          TOP-LEFT CLICKABLE LOGO / HOME BUTTON
+          ------------------------------------------------------------- */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={isIntroComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
@@ -57,7 +59,23 @@ export default function Home() {
         </Link>
       </motion.div>
 
-      {/* 3-HORIZONTAL-BANNER DYNAMIC BACKGROUND */}
+      {/* -------------------------------------------------------------
+          BOTTOM-RIGHT "POWERED BY GRASS <3" TEXT
+          ------------------------------------------------------------- */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={isIntroComplete ? { opacity: 0.8, y: 0 } : { opacity: 0, y: 10 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-20 pointer-events-none"
+      >
+        <p className="text-[10px] md:text-[11px] font-medium tracking-widest text-white/70 uppercase drop-shadow-md">
+          powered by grass &lt;3
+        </p>
+      </motion.div>
+
+      {/* -------------------------------------------------------------
+          3-HORIZONTAL-BANNER DYNAMIC BACKGROUND
+          ------------------------------------------------------------- */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={isIntroComplete ? { opacity: 1 } : { opacity: 0 }}
@@ -96,15 +114,14 @@ export default function Home() {
                 className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
                 variants={{
                   rest: { opacity: 0, scale: 0.95 },
-                  // Keyframe sequence: opacity fades in, holds brief moment, then fades out back to 0
                   hover: { 
                     opacity: [0, 1, 1, 0],
                     scale: [0.95, 1, 1, 1.02],
                   },
                 }}
                 transition={{
-                  duration: 1.2, // Total time for the flash sequence (in seconds)
-                  times: [0, 0.25, 0.75, 1], // Timing breakdown (0.3s fade in, 0.6s visible hold, 0.3s fade out)
+                  duration: 1.2,
+                  times: [0, 0.25, 0.75, 1],
                   ease: "easeInOut",
                 }}
               >
@@ -120,7 +137,9 @@ export default function Home() {
         ))}
       </motion.div>
 
-      {/* INTRO OVERLAY */}
+      {/* -------------------------------------------------------------
+          INTRO OVERLAY
+          ------------------------------------------------------------- */}
       <AnimatePresence>
         {!isIntroComplete && (
           <motion.div

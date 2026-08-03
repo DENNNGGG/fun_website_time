@@ -76,7 +76,9 @@ export default function TabPage({ params }: PageProps) {
   return (
     <div className="relative min-h-screen w-full bg-[#D8A9D8] text-[#3c2a3e] flex flex-col items-center justify-start pt-20 pb-12 font-sans overflow-hidden">
       
-      {/* TOP-LEFT CLICKABLE LOGO / HOME BUTTON */}
+      {/* -------------------------------------------------------------
+          TOP-LEFT CLICKABLE LOGO / HOME BUTTON
+          ------------------------------------------------------------- */}
       <div className="fixed top-6 left-6 md:top-8 md:left-8 z-20">
         <Link href="/" className="group block relative w-16 h-16 md:w-20 md:h-20">
           <div className="relative w-full h-full transition-transform duration-300 group-hover:scale-105 active:scale-95">
@@ -91,7 +93,18 @@ export default function TabPage({ params }: PageProps) {
         </Link>
       </div>
 
-      {/* CENTERED PAGE CONTENT */}
+      {/* -------------------------------------------------------------
+          BOTTOM-RIGHT "POWERED BY GRASS <3" TEXT
+          ------------------------------------------------------------- */}
+      <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-20 pointer-events-none">
+        <p className="text-[10px] md:text-[11px] font-medium tracking-widest text-[#3c2a3e]/70 uppercase">
+          powered by grass &lt;3
+        </p>
+      </div>
+
+      {/* -------------------------------------------------------------
+          CENTERED PAGE CONTENT
+          ------------------------------------------------------------- */}
       <div className="flex flex-col items-center text-center max-w-xl w-full space-y-6 z-10 px-6">
         
         {/* 2. CENTERED TOP GIF */}
