@@ -3,78 +3,74 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
-// Reduced to 3 banners for a cleaner layout
+// Added route slugs for each character/tab
 const backgroundPanels = [
   {
-    src: "/aqua.png",
+    src: "/Aqua_bg_cropped.jpg",
     alt: "Aqua Hoshino",
+    slug: "aqua",
   },
   {
-    src: "/akane.png",
-    alt: "Akane Kurokawa",
+    src: "/Kana_bg_cropped.jpg",
+    alt: "Kana Arima",
+    slug: "kana",
   },
   {
-    src: "/ruby.png",
-    alt: "Ruby Hoshino",
+    src: "/Ai_bg_cropped.jpg",
+    alt: "Ai Hoshino",
+    slug: "ai",
   },
 ];
 
 export default function Home() {
-  // State tracking when the intro animation sequence finishes
   const [isIntroComplete, setIsIntroComplete] = useState(false);
 
   return (
-    <div className="relative min-h-screen font-sans overflow-hidden bg-black">
+    <div className="relative min-h-screen font-sans overflow-hidden bg-[#F0EFEB]">
       
-      {/* -------------------------------------------------------------
-          3-HORIZONTAL-BANNER DYNAMIC BACKGROUND (SEAMLESS GAP-FREE)
-          ------------------------------------------------------------- */}
+      {/* 3-HORIZONTAL-BANNER DYNAMIC BACKGROUND */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={isIntroComplete ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed inset-0 z-0 flex flex-col w-full h-full overflow-hidden bg-black"
+        className="fixed inset-0 z-0 flex flex-col w-full h-full overflow-hidden"
       >
         {backgroundPanels.map((panel, idx) => (
-          <motion.div
-            key={idx}
-            /* Removed border-b and added negative bottom margin (-mb-[1px]) to cover sub-pixel gaps */
-            className="relative w-full h-1/3 overflow-hidden group cursor-pointer -mb-[1px] last:mb-0"
-            whileHover={{ 
-              scale: 1.01, // Subtle expansion on hover
-              zIndex: 10,  // Elevates hovered banner above others
-            }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            {/* Zoomable Banner Container */}
+          <Link href={`/${panel.slug}`} key={idx} className="block h-1/3 w-full">
             <motion.div
-              className="absolute inset-0 w-full h-full"
-              whileHover={{ scale: 1.05 }} // Zoom effect on hover
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full h-full overflow-hidden border-b last:border-b-0 border-white/10 group cursor-pointer"
+              whileHover={{ 
+                scale: 1.01,
+                zIndex: 10,
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <Image
-                src={panel.src}
-                alt={panel.alt}
-                fill
-                priority
-                quality={90}
-                className="object-cover filter brightness-[0.75] contrast-[0.95] saturate-[0.8] transition-all duration-700 group-hover:brightness-[1.05] group-hover:contrast-100 group-hover:saturate-100"
-              />
+              {/* Zoomable Banner Container */}
+              <motion.div
+                className="absolute inset-0 w-full h-full"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Image
+                  src={panel.src}
+                  alt={panel.alt}
+                  fill
+                  priority
+                  quality={90}
+                  className="object-cover filter brightness-[0.75] contrast-[0.95] saturate-[0.8] transition-all duration-700 group-hover:brightness-[1.05] group-hover:contrast-100 group-hover:saturate-100"
+                />
+              </motion.div>
+              
+              {/* Dimming Overlay */}
+              <div className="absolute inset-0 bg-neutral-900/20 group-hover:bg-neutral-900/0 transition-colors duration-700 pointer-events-none" />
             </motion.div>
-            
-            {/* Subtle inner top line for visual separation without creating spacing gaps */}
-            <div className="absolute inset-x-0 top-0 h-[1px] bg-white/10 pointer-events-none z-10" />
-
-            {/* Dimming Overlay */}
-            <div className="absolute inset-0 bg-neutral-900/20 group-hover:bg-neutral-900/0 transition-colors duration-700 pointer-events-none" />
-          </motion.div>
+          </Link>
         ))}
       </motion.div>
 
-      {/* -------------------------------------------------------------
-          1. INTRO OVERLAY (Espeon Lilac Background)
-         ------------------------------------------------------------- */}
+      {/* INTRO OVERLAY */}
       <AnimatePresence>
         {!isIntroComplete && (
           <motion.div
@@ -82,9 +78,8 @@ export default function Home() {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#D8B4F8] px-6"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F0EFEB] px-6"
           >
-            {/* Blurred image focusing card */}
             <motion.div
               initial={{ opacity: 0, filter: "blur(20px)", scale: 0.96 }}
               animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
@@ -95,7 +90,7 @@ export default function Home() {
               onAnimationComplete={() => {
                 setTimeout(() => setIsIntroComplete(true), 1200);
               }}
-              className="relative w-80 md:w-[32rem] aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-purple-900/10"
+              className="relative w-80 md:w-[32rem] aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-black/10"
             >
               <Image
                 src="/Hoshino_Ai.png"
@@ -106,12 +101,11 @@ export default function Home() {
               />
             </motion.div>
 
-            {/* Subtle intro caption */}
             <motion.p
               initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 0.7, y: 0 }}
+              animate={{ opacity: 0.5, y: 0 }}
               transition={{ delay: 0.6, duration: 1 }}
-              className="mt-6 text-[10px] md:text-[11px] font-medium tracking-widest uppercase text-purple-950/70"
+              className="mt-6 text-[10px] md:text-[11px] font-medium tracking-widest uppercase text-[#56595e]"
             >
               Entering Experience...
             </motion.p>
