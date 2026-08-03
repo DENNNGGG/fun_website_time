@@ -72,6 +72,39 @@ export default function Home() {
       </motion.div>
 
       {/* -------------------------------------------------------------
+          BOTTOM-CENTER FLASHING/BOUNCING MINIMAL DOWN ARROW
+          ------------------------------------------------------------- */}
+      <AnimatePresence>
+        {isIntroComplete && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ 
+              opacity: [0.3, 0.9, 0.3], 
+              y: [0, 8, 0] 
+            }}
+            transition={{
+              duration: 2.0,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center gap-1"
+          >
+            <svg
+              className="w-5 h-5 md:w-6 md:h-6 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path d="M19 9l-7 7-7-7" />
+            </svg>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* -------------------------------------------------------------
           5-HORIZONTAL-BANNER SCROLLABLE BACKGROUND
           ------------------------------------------------------------- */}
       <motion.div
