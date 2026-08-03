@@ -15,8 +15,8 @@ const backgroundPanels = [
     alt: "Akane Kurosawa",
   },
   {
-    src: "/Ai_bg_cropped.jpg",
-    alt: "Ai Hoshino",
+    src: "/ruby.png",
+    alt: "Ruby Hoshino",
   },
 ];
 
