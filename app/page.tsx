@@ -44,7 +44,7 @@ export default function Home() {
             className="relative w-full h-full"
           >
             <Image
-              src="/logo.png"
+              src="/deng.png"
               alt="Home Logo"
               fill
               priority
