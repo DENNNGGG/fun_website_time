@@ -78,8 +78,10 @@ export default function Home() {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F0EFEB] px-6"
+            {/* UPDATED: Changed bg to Espeon lilac/lavender (#D8A9D8) */}
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#D8A9D8] px-6"
           >
+            {/* Blurred image focusing card */}
             <motion.div
               initial={{ opacity: 0, filter: "blur(20px)", scale: 0.96 }}
               animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
@@ -90,7 +92,7 @@ export default function Home() {
               onAnimationComplete={() => {
                 setTimeout(() => setIsIntroComplete(true), 1200);
               }}
-              className="relative w-80 md:w-[32rem] aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-black/10"
+              className="relative w-80 md:w-[32rem] aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-purple-900/10"
             >
               <Image
                 src="/Hoshino_Ai.png"
@@ -101,11 +103,13 @@ export default function Home() {
               />
             </motion.div>
 
+            {/* Subtle intro caption */}
             <motion.p
               initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 0.5, y: 0 }}
+              animate={{ opacity: 0.7, y: 0 }}
               transition={{ delay: 0.6, duration: 1 }}
-              className="mt-6 text-[10px] md:text-[11px] font-medium tracking-widest uppercase text-[#56595e]"
+              {/* UPDATED: Darkened caption text slightly for clean contrast against lavender */}
+              className="mt-6 text-[10px] md:text-[11px] font-medium tracking-widest uppercase text-[#3c2a3e]"
             >
               Entering Experience...
             </motion.p>
