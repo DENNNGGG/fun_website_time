@@ -5,6 +5,25 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Search, Globe, UserCircle } from "lucide-react";
 import Image from "next/image";
 
+const backgroundPanels = [
+  {
+    src: "/Aqua_bg.jpg",
+    alt: "Aqua Hoshino",
+  },
+  {
+    src: "/Akane_bg.jpg",
+    alt: "Akane Kurokawa",
+  },
+  {
+    src: "/Kana_bg.jpg",
+    alt: "Kana Arima",
+  },
+  {
+    src: "/Ai_bg.jpg",
+    alt: "Ai Hoshino",
+  },
+];
+
 export default function Home() {
   // State tracking when the intro animation sequence finishes
   const [isIntroComplete, setIsIntroComplete] = useState(false);
@@ -39,7 +58,7 @@ export default function Home() {
     <div className="relative min-h-screen text-[#1a1c1d] font-sans px-6 md:px-12 flex flex-col items-center justify-between overflow-hidden">
       
       {/* -------------------------------------------------------------
-          ADD THIS LAYER: MAIN WEBSITE BACKGROUND IMAGE
+          OVERHAULED LAYER: 4-PANEL DYNAMIC BACKGROUND
           ------------------------------------------------------------- */}
       {/* 
         We use motion.div to smoothly reveal the background after the 
@@ -49,18 +68,38 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={isIntroComplete ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} // Smooth background reveal
-        className="fixed inset-0 z-0 pointer-events-none"
+        className="fixed inset-0 z-0 flex flex-row w-full h-full overflow-hidden pointer-events-none"
       >
-        <Image
-          src="/Hoshino_Ai_bg.png" // EDIT THIS: Path to your local background image in /public
-          alt="Website Background"
-          fill // Spans the entire screen
-          priority // Loads immediately
-          quality={100} // High quality background
-          className="object-cover" // Aspect ratio handled by cropping
-        />
-        {/* Optional: Add an overlay color if your text is hard to read over the image */}
-        {/* <div className="absolute inset-0 bg-white/20" /> */}
+        {backgroundPanels.map((panel, idx) => (
+          <motion.div
+            key={idx}
+            className="relative h-full w-1/4 overflow-hidden border-r last:border-r-0 border-white/10 group cursor-pointer pointer-events-auto"
+            whileHover={{ 
+              scale: 1.02, // Pops the panel container out slightly
+              zIndex: 10,  // Elevates the hovered panel above others
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            {/* Zoomable Image Container */}
+            <motion.div
+              className="absolute inset-0 w-full h-full"
+              whileHover={{ scale: 1.08 }} // Subtle zoom inside the column
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Image
+                src={panel.src}
+                alt={panel.alt}
+                fill
+                priority
+                quality={90}
+                className="object-cover filter brightness-[0.75] contrast-[0.95] saturate-[0.8] transition-all duration-700 group-hover:brightness-[1.05] group-hover:contrast-100 group-hover:saturate-100"
+              />
+            </motion.div>
+            
+            {/* Overlay that softens/dims the image when not hovered */}
+            <div className="absolute inset-0 bg-neutral-900/10 group-hover:bg-neutral-900/0 transition-colors duration-700 pointer-events-none" />
+          </motion.div>
+        ))}
       </motion.div>
 
       {/* -------------------------------------------------------------
@@ -157,7 +196,7 @@ export default function Home() {
           variants={itemVariants}
           className="font-serif italic text-3xl md:text-5xl lg:text-5xl font-medium tracking-tight leading-[1.1] text-[#0d0e12] max-w-xl mx-auto"
         >
-          We're building better ways to use the internet{" "}
+          We&apos;re building better ways to use the internet{" "}
           <span className="inline-block relative">
             <span className="font-serif not-italic">Dia</span>
             <span className="absolute left-0 right-1 -bottom-1 border-b-[1.5px] border-dotted border-black/50" />
