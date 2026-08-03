@@ -87,17 +87,22 @@ export default function Home() {
       </motion.div>
 
       {/* -------------------------------------------------------------
-          BOTTOM-CENTER FLASHING DOWN ARROW (HIDES AT BOTTOM)
+          BOTTOM-CENTER DOWN ARROW (FAST FADE OUT & STAYS GONE)
           ------------------------------------------------------------- */}
       <AnimatePresence>
         {isIntroComplete && !isAtBottom && (
           <motion.div
+            key="scroll-arrow"
             initial={{ opacity: 0, y: -10 }}
             animate={{ 
               opacity: [0.3, 0.9, 0.3], 
               y: [0, 8, 0] 
             }}
-            exit={{ opacity: 0, y: 10 }}
+            exit={{ 
+              opacity: 0, 
+              y: 10,
+              transition: { duration: 0.25, ease: "easeOut" } // Fast 0.25s exit fade
+            }}
             transition={{
               duration: 2.0,
               repeat: Infinity,
