@@ -34,28 +34,28 @@ As of time of writing, the actual contents of these subpages are under construct
   akane: {
     gifSrc: "/akane.gif",
     alt: "Akane GIF",
-    title: "Interests",
+    title: "Me",
     marqueeText: "AKANE KUROKAWA — VISUAL EXPERIENCE — GALLERY — ",
     body: "Coming soon :p",
   },
   ruby: {
     gifSrc: "/ruby.gif",
     alt: "Ruby GIF",
-    title: "Ruby Hoshino",
+    title: "Interests",
     marqueeText: "RUBY HOSHINO — VISUAL EXPERIENCE — GALLERY — ",
     body: "Coming soon :p",
   },
   memcho: {
     gifSrc: "/mem.gif", 
     alt: "Memcho GIF",
-    title: "Mem-cho",
+    title: "People",
     marqueeText: "MEM-CHO — VISUAL EXPERIENCE — GALLERY — ",
     body: "Coming soon :p",
   },
   kana: {
     gifSrc: "/kana.gif", // Path to public/kana.gif
     alt: "Kana GIF",
-    title: "Kana Arima",
+    title: "Future",
     marqueeText: "KANA ARIMA — VISUAL EXPERIENCE — GALLERY — ",
     body: "Coming soon :p",
   },
