@@ -7,19 +7,19 @@ import Image from "next/image";
 
 const backgroundPanels = [
   {
-    src: "/Aqua_bg.jpg",
+    src: "/Aqua_bg_cropped.jpg",
     alt: "Aqua Hoshino",
   },
   {
-    src: "/Akane_bg.jpg",
+    src: "/Akane_bg_cropped.jpg",
     alt: "Akane Kurokawa",
   },
   {
-    src: "/Kana_bg.jpg",
+    src: "/Kana_bg_cropped.jpg",
     alt: "Kana Arima",
   },
   {
-    src: "/Ai_bg.jpg",
+    src: "/Ai_bg_cropped.jpg",
     alt: "Ai Hoshino",
   },
 ];
