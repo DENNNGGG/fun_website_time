@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-// Added character names explicitly for the flash overlay
+// Added 2 extra panels (5 total)
 const backgroundPanels = [
   {
     src: "/aqua.png",
@@ -15,7 +15,7 @@ const backgroundPanels = [
   },
   {
     src: "/akane.png",
-    alt: "Akane kurosawa",
+    alt: "Akane kurokawa",
     slug: "akane",
     name: "AKANE KUROKAWA",
   },
@@ -25,22 +25,34 @@ const backgroundPanels = [
     slug: "ruby",
     name: "RUBY HOSHINO",
   },
+  {
+    src: "/memcho.png", // Replace with your 4th image path
+    alt: "Memcho",
+    slug: "memcho",
+    name: "MEMCHO",
+  },
+  {
+    src: "/kana.png", // Replace with your 5th image path
+    alt: "Arima Kana",
+    slug: "kana",
+    name: "ARIMA KANA",
+  },
 ];
 
 export default function Home() {
   const [isIntroComplete, setIsIntroComplete] = useState(false);
 
   return (
-    <div className="relative min-h-screen font-sans overflow-hidden bg-[#F0EFEB]">
+    <div className="relative min-h-screen font-sans bg-[#F0EFEB] overflow-x-hidden">
       
       {/* -------------------------------------------------------------
-          TOP-LEFT CLICKABLE LOGO / HOME BUTTON
+          TOP-LEFT CLICKABLE LOGO (FIXED IN VIEWPORT FRAME)
           ------------------------------------------------------------- */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={isIntroComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-6 left-6 md:top-8 md:left-8 z-20"
+        className="fixed top-6 left-6 md:top-8 md:left-8 z-30"
       >
         <Link href="/" className="group block relative w-16 h-16 md:w-20 md:h-20">
           <motion.div
@@ -60,30 +72,16 @@ export default function Home() {
       </motion.div>
 
       {/* -------------------------------------------------------------
-          BOTTOM-RIGHT "POWERED BY GRASS <3" TEXT
-          ------------------------------------------------------------- */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={isIntroComplete ? { opacity: 0.8, y: 0 } : { opacity: 0, y: 10 }}
-        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-20 pointer-events-none"
-      >
-        <p className="text-[10px] md:text-[11px] font-medium tracking-widest text-white/70 uppercase drop-shadow-md">
-          powered by grass &lt;3
-        </p>
-      </motion.div>
-
-      {/* -------------------------------------------------------------
-          3-HORIZONTAL-BANNER DYNAMIC BACKGROUND
+          5-HORIZONTAL-BANNER SCROLLABLE BACKGROUND
           ------------------------------------------------------------- */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={isIntroComplete ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed inset-0 z-0 flex flex-col w-full h-full overflow-hidden"
+        className="relative z-0 flex flex-col w-full"
       >
         {backgroundPanels.map((panel, idx) => (
-          <Link href={`/${panel.slug}`} key={idx} className="block h-1/3 w-full">
+          <Link href={`/${panel.slug}`} key={idx} className="block h-[33.333vh] w-full">
             <motion.div
               className="relative w-full h-full overflow-hidden border-b last:border-b-0 border-white/10 group cursor-pointer"
               whileHover="hover"
@@ -103,7 +101,7 @@ export default function Home() {
                   src={panel.src}
                   alt={panel.alt}
                   fill
-                  priority
+                  priority={idx < 3} // Only prioritize loading the initial 3 visible images
                   quality={90}
                   className="object-cover filter brightness-[0.75] contrast-[0.95] saturate-[0.8] transition-all duration-700 group-hover:brightness-[1.05] group-hover:contrast-100 group-hover:saturate-100"
                 />
@@ -135,6 +133,20 @@ export default function Home() {
             </motion.div>
           </Link>
         ))}
+
+        {/* -------------------------------------------------------------
+            BOTTOM-RIGHT WATERMARK (ABSOLUTE TO WEBPAGE BOTTOM)
+            ------------------------------------------------------------- */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={isIntroComplete ? { opacity: 0.8, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute bottom-6 right-6 md:bottom-8 md:right-8 z-20 pointer-events-none"
+        >
+          <p className="text-[10px] md:text-[11px] font-medium tracking-widest text-white/70 uppercase drop-shadow-md">
+            powered by grass &lt;3
+          </p>
+        </motion.div>
       </motion.div>
 
       {/* -------------------------------------------------------------
