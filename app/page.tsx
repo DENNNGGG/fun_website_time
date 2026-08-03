@@ -26,7 +26,7 @@ const backgroundPanels = [
     name: "RUBY HOSHINO",
   },
   {
-    src: "/memcho.png", // Replace with your 4th image path
+    src: "/mem.png", // Replace with your 4th image path
     alt: "Memcho",
     slug: "memcho",
     name: "MEMCHO",
