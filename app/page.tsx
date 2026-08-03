@@ -12,7 +12,7 @@ const backgroundPanels = [
   },
   {
     src: "/akane.png",
-    alt: "Akane Kurosawa",
+    alt: "Akane Kurokawa",
   },
   {
     src: "/ruby.png",
@@ -73,7 +73,7 @@ export default function Home() {
       </motion.div>
 
       {/* -------------------------------------------------------------
-          1. INTRO OVERLAY
+          1. INTRO OVERLAY (Espeon Lilac Background)
          ------------------------------------------------------------- */}
       <AnimatePresence>
         {!isIntroComplete && (
@@ -82,7 +82,7 @@ export default function Home() {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F0EFEB] px-6"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#D8B4F8] px-6"
           >
             {/* Blurred image focusing card */}
             <motion.div
@@ -95,7 +95,7 @@ export default function Home() {
               onAnimationComplete={() => {
                 setTimeout(() => setIsIntroComplete(true), 1200);
               }}
-              className="relative w-80 md:w-[32rem] aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-black/10"
+              className="relative w-80 md:w-[32rem] aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-purple-900/10"
             >
               <Image
                 src="/Hoshino_Ai.png"
@@ -109,9 +109,9 @@ export default function Home() {
             {/* Subtle intro caption */}
             <motion.p
               initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 0.5, y: 0 }}
+              animate={{ opacity: 0.7, y: 0 }}
               transition={{ delay: 0.6, duration: 1 }}
-              className="mt-6 text-[10px] md:text-[11px] font-medium tracking-widest uppercase text-[#56595e]"
+              className="mt-6 text-[10px] md:text-[11px] font-medium tracking-widest uppercase text-purple-950/70"
             >
               Entering Experience...
             </motion.p>
