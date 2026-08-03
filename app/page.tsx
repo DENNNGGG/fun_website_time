@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-// Added 2 extra panels (5 total)
 const backgroundPanels = [
   {
     src: "/aqua.png",
@@ -26,13 +25,13 @@ const backgroundPanels = [
     name: "RUBY HOSHINO",
   },
   {
-    src: "/mem2.png", // Replace with your 4th image path
+    src: "/mem2.png",
     alt: "Memcho",
     slug: "memcho",
     name: "MEMCHO",
   },
   {
-    src: "/kana.png", // Replace with your 5th image path
+    src: "/kana.png",
     alt: "Arima Kana",
     slug: "kana",
     name: "ARIMA KANA",
@@ -45,14 +44,12 @@ export default function Home() {
   return (
     <div className="relative min-h-screen font-sans bg-[#F0EFEB] overflow-x-hidden">
       
-      {/* -------------------------------------------------------------
-          TOP-LEFT CLICKABLE LOGO (FIXED IN VIEWPORT FRAME)
-          ------------------------------------------------------------- */}
+      {/* TOP-LEFT CLICKABLE LOGO */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={isIntroComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-6 left-6 md:top-8 md:left-8 z-30"
+        className="fixed top-6 left-6 md:top-8 md:left-8 z-40"
       >
         <Link href="/" className="group block relative w-16 h-16 md:w-20 md:h-20">
           <motion.div
@@ -71,9 +68,7 @@ export default function Home() {
         </Link>
       </motion.div>
 
-      {/* -------------------------------------------------------------
-          5-HORIZONTAL-BANNER SCROLLABLE BACKGROUND
-          ------------------------------------------------------------- */}
+      {/* 5-HORIZONTAL-BANNER BACKGROUND WITH HOVER FULL-IMAGE POP */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={isIntroComplete ? { opacity: 1 } : { opacity: 0 }}
@@ -83,33 +78,45 @@ export default function Home() {
         {backgroundPanels.map((panel, idx) => (
           <Link href={`/${panel.slug}`} key={idx} className="block h-[33.333vh] w-full">
             <motion.div
-              className="relative w-full h-full overflow-hidden border-b last:border-b-0 border-white/10 group cursor-pointer"
+              className="relative w-full h-full border-b last:border-b-0 border-white/10 group cursor-pointer"
               whileHover="hover"
               initial="rest"
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              {/* Zoomable Banner Container */}
-              <motion.div
-                className="absolute inset-0 w-full h-full"
-                variants={{
-                  rest: { scale: 1 },
-                  hover: { scale: 1.05 },
-                }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              >
+              {/* 1. BASE STATIC CROPPED BANNER */}
+              <div className="absolute inset-0 w-full h-full overflow-hidden">
                 <Image
                   src={panel.src}
                   alt={panel.alt}
                   fill
-                  priority={idx < 3} // Only prioritize loading the initial 3 visible images
+                  priority={idx < 3}
                   quality={90}
                   className="object-cover filter brightness-[0.75] contrast-[0.95] saturate-[0.8] transition-all duration-700 group-hover:brightness-[1.05] group-hover:contrast-100 group-hover:saturate-100"
                 />
+              </div>
+
+              {/* 2. HOVER POP-OUT FULL UNCROPPED IMAGE OVERLAY */}
+              <motion.div
+                className="fixed inset-0 z-30 pointer-events-none flex items-center justify-center bg-black/40 backdrop-blur-md p-6"
+                variants={{
+                  rest: { opacity: 0, scale: 0.95 },
+                  hover: { opacity: 1, scale: 1 },
+                }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="relative w-full h-full max-w-5xl max-h-[85vh] rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    src={panel.src}
+                    alt={panel.alt}
+                    fill
+                    quality={100}
+                    className="object-contain drop-shadow-2xl"
+                  />
+                </div>
               </motion.div>
               
               {/* FLASH OF TEXT ON HOVER */}
               <motion.div
-                className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
+                className="absolute inset-0 flex items-center justify-center z-35 pointer-events-none"
                 variants={{
                   rest: { opacity: 0, scale: 0.95 },
                   hover: { 
@@ -123,7 +130,7 @@ export default function Home() {
                   ease: "easeInOut",
                 }}
               >
-                <span className="font-serif italic text-2xl md:text-4xl font-light tracking-[0.2em] text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] uppercase">
+                <span className="font-serif italic text-2xl md:text-5xl font-light tracking-[0.2em] text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)] uppercase z-40">
                   {panel.name}
                 </span>
               </motion.div>
@@ -134,9 +141,7 @@ export default function Home() {
           </Link>
         ))}
 
-        {/* -------------------------------------------------------------
-            BOTTOM-RIGHT WATERMARK (ABSOLUTE TO WEBPAGE BOTTOM)
-            ------------------------------------------------------------- */}
+        {/* BOTTOM-RIGHT WATERMARK */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={isIntroComplete ? { opacity: 0.8, y: 0 } : { opacity: 0, y: 10 }}
@@ -149,9 +154,7 @@ export default function Home() {
         </motion.div>
       </motion.div>
 
-      {/* -------------------------------------------------------------
-          INTRO OVERLAY
-          ------------------------------------------------------------- */}
+      {/* INTRO OVERLAY */}
       <AnimatePresence>
         {!isIntroComplete && (
           <motion.div
@@ -161,7 +164,6 @@ export default function Home() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#D8A9D8] px-6"
           >
-            {/* Blurred image focusing card */}
             <motion.div
               initial={{ opacity: 0, filter: "blur(20px)", scale: 0.96 }}
               animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
@@ -183,7 +185,6 @@ export default function Home() {
               />
             </motion.div>
 
-            {/* Subtle intro caption */}
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 0.7, y: 0 }}
