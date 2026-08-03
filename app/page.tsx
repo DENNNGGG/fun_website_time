@@ -11,31 +11,31 @@ const backgroundPanels = [
     src: "/aqua.png",
     alt: "Aqua Hoshino",
     slug: "aqua",
-    name: "AQUA HOSHINO",
+    name: "WELCOME | AQUA",
   },
   {
     src: "/akane.png",
     alt: "Akane kurokawa",
     slug: "akane",
-    name: "AKANE KUROKAWA",
+    name: "ME | AKANE",
   },
   {
     src: "/ruby.png",
     alt: "Ruby Hoshino",
     slug: "ruby",
-    name: "RUBY HOSHINO",
+    name: "INTERESTS | RUBY",
   },
   {
     src: "/mem2.png", // Replace with your 4th image path
     alt: "Memcho",
     slug: "memcho",
-    name: "MEMCHO",
+    name: "PEOPLE | MEMCHO",
   },
   {
     src: "/kana.png", // Replace with your 5th image path
     alt: "Arima Kana",
     slug: "kana",
-    name: "ARIMA KANA",
+    name: "FUTURE | KANA",
   },
 ];
 
