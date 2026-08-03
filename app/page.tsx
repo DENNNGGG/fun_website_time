@@ -7,16 +7,16 @@ import Image from "next/image";
 // Reduced to 3 banners for a cleaner layout
 const backgroundPanels = [
   {
-    src: "/Aqua_bg_cropped.jpg",
+    src: "/aqua.png",
     alt: "Aqua Hoshino",
   },
   {
-    src: "/Kana_bg_cropped.jpg",
-    alt: "Kana Arima",
+    src: "/akane.png",
+    alt: "Akane Kurosawa",
   },
   {
-    src: "/Ai_bg_cropped.jpg",
-    alt: "Ai Hoshino",
+    src: "/ruby.png",
+    alt: "Ruby Hoshino",
   },
 ];
 
