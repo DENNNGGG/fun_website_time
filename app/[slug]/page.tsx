@@ -11,28 +11,31 @@ interface PageProps {
   }>;
 }
 
-// 1. Define custom content/GIFs & marquee text for each slug
+// 1. Custom content, GIFs, marquee text, and blog content for each slug
 const subpageData: Record<
   string,
-  { gifSrc: string; alt: string; title: string; marqueeText: string }
+  { gifSrc: string; alt: string; title: string; marqueeText: string; body: string }
 > = {
   aqua: {
     gifSrc: "/aqua.gif",
     alt: "Aqua GIF",
     title: "Aqua Hoshino",
     marqueeText: "AQUA HOSHINO — VISUAL EXPERIENCE — GALLERY — ",
+    body: "Welcome to Aqua's space. Paste your blog post, thoughts, or write-ups here. The container expands naturally as you add more text while maintaining readable line lengths and soft typography.",
   },
   akane: {
     gifSrc: "/akane.gif",
     alt: "Akane GIF",
     title: "Akane Kurokawa",
     marqueeText: "AKANE KUROKAWA — VISUAL EXPERIENCE — GALLERY — ",
+    body: "Welcome to Akane's space. Paste your blog post, thoughts, or write-ups here. The container expands naturally as you add more text while maintaining readable line lengths and soft typography.",
   },
   ruby: {
     gifSrc: "/ruby.gif",
     alt: "Ruby GIF",
     title: "Ruby Hoshino",
     marqueeText: "RUBY HOSHINO — VISUAL EXPERIENCE — GALLERY — ",
+    body: "Welcome to Ruby's space. Paste your blog post, thoughts, or write-ups here. The container expands naturally as you add more text while maintaining readable line lengths and soft typography.",
   },
 };
 
@@ -51,7 +54,6 @@ function MarqueeText({ text }: { text: string }) {
         }}
         className="inline-block whitespace-nowrap text-sm md:text-base font-medium tracking-[0.25em] text-[#3c2a3e]/80 uppercase"
       >
-        {/* Repeating text to guarantee seamless infinite loop */}
         <span>{text}</span>
         <span>{text}</span>
         <span>{text}</span>
@@ -62,22 +64,21 @@ function MarqueeText({ text }: { text: string }) {
 }
 
 export default function TabPage({ params }: PageProps) {
-  // Unwrap params using React's use() hook for client component compatibility
   const { slug } = use(params);
 
-  // Get specific page data based on slug, or fallback if unknown slug
   const pageContent = subpageData[slug] || {
     gifSrc: "/deng.png",
     alt: "Default Visual",
     title: `${slug} Page`,
     marqueeText: `${slug.toUpperCase()} — VISUAL EXPERIENCE — GALLERY — `,
+    body: "Default blog content space. Add your custom paragraphs or notes here.",
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-[#D8A9D8] text-[#3c2a3e] flex flex-col items-center justify-start pt-20 pb-12 font-sans overflow-hidden">
+    <div className="relative min-h-screen w-full bg-[#D8A9D8] text-[#3c2a3e] flex flex-col items-center justify-start pt-20 pb-24 font-sans overflow-x-hidden">
       
       {/* -------------------------------------------------------------
-          TOP-LEFT CLICKABLE LOGO / HOME BUTTON
+          TOP-LEFT CLICKABLE LOGO (FIXED IN VIEWPORT FRAME)
           ------------------------------------------------------------- */}
       <div className="fixed top-6 left-6 md:top-8 md:left-8 z-20">
         <Link href="/" className="group block relative w-16 h-16 md:w-20 md:h-20">
@@ -94,27 +95,18 @@ export default function TabPage({ params }: PageProps) {
       </div>
 
       {/* -------------------------------------------------------------
-          BOTTOM-RIGHT "POWERED BY GRASS <3" TEXT
-          ------------------------------------------------------------- */}
-      <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-20 pointer-events-none">
-        <p className="text-[10px] md:text-[11px] font-medium tracking-widest text-[#3c2a3e]/70 uppercase">
-          powered by grass &lt;3
-        </p>
-      </div>
-
-      {/* -------------------------------------------------------------
-          CENTERED PAGE CONTENT
+          CENTERED TOP CONTENT (GIF & TITLE)
           ------------------------------------------------------------- */}
       <div className="flex flex-col items-center text-center max-w-xl w-full space-y-6 z-10 px-6">
         
-        {/* 2. CENTERED TOP GIF */}
+        {/* CENTERED TOP GIF */}
         <div className="relative w-72 md:w-96 aspect-video rounded-2xl overflow-hidden shadow-xl border border-purple-900/10">
           <Image
             src={pageContent.gifSrc}
             alt={pageContent.alt}
             fill
             priority
-            unoptimized // Keeps animated GIFs playing smoothly without static optimization
+            unoptimized
             className="object-cover"
           />
         </div>
@@ -130,19 +122,43 @@ export default function TabPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* MARQUEE RUNNING TEXT BANNER */}
+      {/* -------------------------------------------------------------
+          MARQUEE RUNNING TEXT BANNER
+          ------------------------------------------------------------- */}
       <div className="w-full my-6">
         <MarqueeText text={pageContent.marqueeText} />
       </div>
 
-      {/* BACK LINK */}
-      <div className="z-10 pt-2">
+      {/* -------------------------------------------------------------
+          CENTERED BLOG TEXTBOX
+          ------------------------------------------------------------- */}
+      <div className="w-full max-w-2xl px-6 my-4 z-10">
+        <div className="bg-purple-900/5 backdrop-blur-sm border border-purple-900/10 rounded-2xl p-6 md:p-8 shadow-sm">
+          <p className="text-sm md:text-base leading-relaxed tracking-wide text-[#3c2a3e]/90 whitespace-pre-wrap font-sans">
+            {pageContent.body}
+          </p>
+        </div>
+      </div>
+
+      {/* -------------------------------------------------------------
+          BACK LINK
+          ------------------------------------------------------------- */}
+      <div className="z-10 pt-4">
         <Link
           href="/"
           className="text-[11px] font-semibold tracking-widest uppercase text-[#3c2a3e] hover:text-black transition-colors underline underline-offset-4"
         >
           ← Back to Home
         </Link>
+      </div>
+
+      {/* -------------------------------------------------------------
+          BOTTOM-RIGHT WATERMARK (ABSOLUTE TO WEBPAGE BOTTOM)
+          ------------------------------------------------------------- */}
+      <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 z-20 pointer-events-none">
+        <p className="text-[10px] md:text-[11px] font-medium tracking-widest text-[#3c2a3e]/70 uppercase">
+          powered by grass &lt;3
+        </p>
       </div>
 
     </div>
