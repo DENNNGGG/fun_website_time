@@ -47,7 +47,7 @@ export default async function TabPage({ params }: PageProps) {
         <Link href="/" className="group block relative w-16 h-16 md:w-20 md:h-20">
           <div className="relative w-full h-full transition-transform duration-300 group-hover:scale-105 active:scale-95">
             <Image
-              src="/logo.png"
+              src="/deng.png"
               alt="Home Logo"
               fill
               priority
