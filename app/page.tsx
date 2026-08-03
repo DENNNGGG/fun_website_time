@@ -63,7 +63,7 @@ export default function Home() {
               className="relative w-64 h-80 md:w-80 md:h-[26rem] rounded-3xl overflow-hidden shadow-2xl border border-black/10"
             >
               <Image
-                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop"
+                src="/Hoshino_Ai.png"
                 alt="Intro Visual"
                 fill
                 priority
