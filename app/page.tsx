@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-// Update these file paths to match the exact names in your /public folder
+// Reduced to 3 banners for a cleaner layout
 const backgroundPanels = [
   {
     src: "/aqua.png",
@@ -12,19 +12,11 @@ const backgroundPanels = [
   },
   {
     src: "/akane.png",
-    alt: "Akane Kurokawa",
+    alt: "Akane Kurosawa",
   },
   {
-    src: "/kana.png",
-    alt: "Kana Arima",
-  },
-  {
-    src: "/mem.png",
-    alt: "Memcho",
-  },
-  {
-    src: "/ruby.png", // Replace with your 5th image filename
-    alt: "Ruby Hoshino",
+    src: "/Ai_bg_cropped.jpg",
+    alt: "Ai Hoshino",
   },
 ];
 
@@ -36,7 +28,7 @@ export default function Home() {
     <div className="relative min-h-screen font-sans overflow-hidden bg-[#F0EFEB]">
       
       {/* -------------------------------------------------------------
-          OVERHAULED LAYER: 5-HORIZONTAL-BANNER DYNAMIC BACKGROUND
+          OVERHAULED LAYER: 3-HORIZONTAL-BANNER DYNAMIC BACKGROUND
           ------------------------------------------------------------- */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -47,7 +39,7 @@ export default function Home() {
         {backgroundPanels.map((panel, idx) => (
           <motion.div
             key={idx}
-            className="relative w-full h-1/5 overflow-hidden border-b last:border-b-0 border-white/10 group cursor-pointer"
+            className="relative w-full h-1/3 overflow-hidden border-b last:border-b-0 border-white/10 group cursor-pointer"
             whileHover={{ 
               scale: 1.01, // Subtle expansion on hover
               zIndex: 10,  // Elevates hovered banner above others
