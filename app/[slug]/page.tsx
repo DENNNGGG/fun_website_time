@@ -21,7 +21,15 @@ const subpageData: Record<
     alt: "Aqua GIF",
     title: "Welcome",
     marqueeText: "AQUA HOSHINO — GOROU AMAMIYA — WELCOME — IT BEGINS - ",
-    body: "Hi, I’m not really sure how you made it here. Why are you looking this shit up anyway? Anyways, this was pretty fun to vibecode, although it’ll probably be embarrassing in retrospect and I imagine no one’s really going to look at it anyway. I promise I don’t have an Obsession (2026) with OnK.",
+    body: `Welcome to the website, I guess. Did you look this shit up? In this current state I can’t imagine myself actually sharing this shit with anyone lol
+
+All substantial elements of this website were vibecoded by Gemini 3.6 Flash from 8/2/2026-8/3/2026, deployed to Vercel. I was trying to play around with Gemini CLI but it turns out that Google AI Pro and the Gemini web interface are two different subscriptions–it also did not help that I gave Gemini CLI full git permissions and it was kinda randomly cooking on its own. Oh well.
+
+I think I envisioned this as being a space that I could decorate and adorn with impunity, but considering that upon being given a world of imagination at my fingertips (at least within Gemini’s vibecoding capabilities), my immediate instinct was to build a virtual Oshi no Ko shrine, I’m wonder exactly what that says about myself and the extent of my creative vision. Fuck it we ball though?
+
+Anyways, the immediate 2-3 week goal of this website is just to be a repository for where I am right now–the things that are on my mind, the interests I currently have or the hobbies I’d like to pursue but likely never will, at least at the rate that I’m going. I’d be remiss if I were to treat this as a meaningful discussion with you, the viewer. After all, it’s probably more than a little off-putting, picking at the scabs of your soul tissue to strangers through the medium of a webpage without seeming either overwhelmingly pretentious or just… deeply and profoundly sad. Probably both in this case. 
+
+As of time of writing, the actual contents of these subpages are under construction, although I suspect that I’ll begin populating them over the coming weeks, so long as my boredom is not overtaken by neuroticism. Maybe by the end of this, I’ll have a clearer picture of myself. Maybe you will too, with any luck.`,
   },
   akane: {
     gifSrc: "/akane.gif",
@@ -151,6 +159,13 @@ export default function TabPage({ params }: PageProps) {
           <p className="text-sm md:text-base leading-relaxed tracking-wide text-[#3c2a3e]/90 whitespace-pre-wrap font-sans">
             {pageContent.body}
           </p>
+          
+          {/* Right-aligned sign-off matching the image */}
+          {slug === "aqua" && (
+            <p className="mt-8 text-right text-xs md:text-sm font-medium tracking-wider text-[#3c2a3e]/80">
+              Deng, 8/3/2026
+            </p>
+          )}
         </div>
       </div>
 
