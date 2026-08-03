@@ -5,22 +5,25 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-// Route slugs for each character banner
+// Added character names explicitly for the flash overlay
 const backgroundPanels = [
   {
     src: "/aqua.png",
     alt: "Aqua Hoshino",
     slug: "aqua",
+    name: "AQUA HOSHINO",
   },
   {
     src: "/akane.png",
     alt: "Akane kurosawa",
     slug: "akane",
+    name: "AKANE KUROKAWA",
   },
   {
     src: "/ruby.png",
     alt: "Ruby Hoshino",
     slug: "ruby",
+    name: "RUBY HOSHINO",
   },
 ];
 
@@ -65,16 +68,17 @@ export default function Home() {
           <Link href={`/${panel.slug}`} key={idx} className="block h-1/3 w-full">
             <motion.div
               className="relative w-full h-full overflow-hidden border-b last:border-b-0 border-white/10 group cursor-pointer"
-              whileHover={{ 
-                scale: 1.01,
-                zIndex: 10,
-              }}
+              whileHover="hover"
+              initial="rest"
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               {/* Zoomable Banner Container */}
               <motion.div
                 className="absolute inset-0 w-full h-full"
-                whileHover={{ scale: 1.05 }}
+                variants={{
+                  rest: { scale: 1 },
+                  hover: { scale: 1.05 },
+                }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               >
                 <Image
@@ -87,6 +91,28 @@ export default function Home() {
                 />
               </motion.div>
               
+              {/* FLASH OF TEXT ON HOVER */}
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
+                variants={{
+                  rest: { opacity: 0, scale: 0.95 },
+                  // Keyframe sequence: opacity fades in, holds brief moment, then fades out back to 0
+                  hover: { 
+                    opacity: [0, 1, 1, 0],
+                    scale: [0.95, 1, 1, 1.02],
+                  },
+                }}
+                transition={{
+                  duration: 1.2, // Total time for the flash sequence (in seconds)
+                  times: [0, 0.25, 0.75, 1], // Timing breakdown (0.3s fade in, 0.6s visible hold, 0.3s fade out)
+                  ease: "easeInOut",
+                }}
+              >
+                <span className="font-serif italic text-2xl md:text-4xl font-light tracking-[0.2em] text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] uppercase">
+                  {panel.name}
+                </span>
+              </motion.div>
+
               {/* Dimming Overlay */}
               <div className="absolute inset-0 bg-neutral-900/20 group-hover:bg-neutral-900/0 transition-colors duration-700 pointer-events-none" />
             </motion.div>
