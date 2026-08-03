@@ -60,7 +60,7 @@ export default function Home() {
                 // Short hold after focus before revealing main site
                 setTimeout(() => setIsIntroComplete(true), 1200);
               }}
-              className="relative w-96 md:w-[32rem] aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border border-black/10"
+              className="relative w-72 md:w-96 aspect-[3/5] rounded-3xl overflow-hidden shadow-2xl border border-black/10"
             >
               <Image
                 src="/Hoshino_Ai.png"
