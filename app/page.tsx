@@ -1,16 +1,21 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Search, Globe, UserCircle } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
-  // Explicitly typed as Variants with cubic-bezier easing as const
+  // State tracking when the intro animation sequence finishes
+  const [isIntroComplete, setIsIntroComplete] = useState(false);
+
+  // Motion variants for your main layout elements
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.12,
         ease: [0.16, 1, 0.3, 1],
       },
     },
@@ -29,10 +34,67 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F0EFEB] text-[#1a1c1d] font-sans px-6 md:px-12 flex flex-col items-center justify-between">
+    <div className="relative min-h-screen bg-[#F0EFEB] text-[#1a1c1d] font-sans px-6 md:px-12 flex flex-col items-center justify-between overflow-hidden">
+      
+      {/* -------------------------------------------------------------
+          1. INTRO OVERLAY (Image slowly focuses, then exits)
+         ------------------------------------------------------------- */}
+      <AnimatePresence>
+        {!isIntroComplete && (
+          <motion.div
+            key="intro-overlay"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F0EFEB] px-6"
+          >
+            {/* Blurred image focusing card */}
+            <motion.div
+              initial={{ opacity: 0, filter: "blur(20px)", scale: 0.96 }}
+              animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+              transition={{
+                duration: 2.0, // Control speed of image focus
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              onAnimationComplete={() => {
+                // Short hold after focus before revealing main site
+                setTimeout(() => setIsIntroComplete(true), 600);
+              }}
+              className="relative w-64 h-80 md:w-80 md:h-[26rem] rounded-3xl overflow-hidden shadow-2xl border border-black/10"
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop"
+                alt="Intro Visual"
+                fill
+                priority
+                className="object-cover"
+              />
+            </motion.div>
+
+            {/* Subtle intro caption */}
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 0.5, y: 0 }}
+              transition={{ delay: 0.6, duration: 1 }}
+              className="mt-6 text-[10px] md:text-[11px] font-medium tracking-widest uppercase text-[#56595e]"
+            >
+              Entering Experience...
+            </motion.p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* -------------------------------------------------------------
+          2. MAIN WEBPAGE (Your exact layout, revealed post-intro)
+         ------------------------------------------------------------- */}
       
       {/* 1. Header Area */}
-      <header className="w-full pt-8 flex items-start justify-start z-10 text-[10px] md:text-[11px] font-medium tracking-widest uppercase leading-relaxed text-[#56595e]">
+      <motion.header
+        initial={{ opacity: 0, y: -10 }}
+        animate={isIntroComplete ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full pt-8 flex items-start justify-start z-10 text-[10px] md:text-[11px] font-medium tracking-widest uppercase leading-relaxed text-[#56595e]"
+      >
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center gap-3">
             <span className="w-1.5 h-1.5 rounded-full bg-[#4A78F2]" />
@@ -43,12 +105,12 @@ export default function Home() {
             <span>THEME</span>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* 2. Centered Hero Block */}
       <motion.main
         initial="hidden"
-        animate="visible"
+        animate={isIntroComplete ? "visible" : "hidden"}
         variants={containerVariants}
         className="flex-grow flex flex-col items-center justify-center text-center max-w-2xl w-full z-10 space-y-16 mt-[-10vh]"
       >
@@ -105,7 +167,12 @@ export default function Home() {
       </motion.main>
 
       {/* 3. Footer Area */}
-      <footer className="w-full pb-6 grid grid-cols-5 items-end text-[10px] md:text-[11px] tracking-widest font-semibold text-[#56595e] uppercase">
+      <motion.footer
+        initial={{ opacity: 0, y: 10 }}
+        animate={isIntroComplete ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full pb-6 grid grid-cols-5 items-end text-[10px] md:text-[11px] tracking-widest font-semibold text-[#56595e] uppercase"
+      >
         <div className="justify-self-start text-base pb-1">
           <Globe className="w-5 h-5 text-neutral-400" />
         </div>
@@ -131,7 +198,8 @@ export default function Home() {
           <span>COPYRIGHT 2025</span>
           <span className="w-[1.5px] h-3 bg-black/20" />
         </div>
-      </footer>
+      </motion.footer>
+
     </div>
   );
 }
