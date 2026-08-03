@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-// Added route slugs for each character/tab
+// Route slugs for each character banner
 const backgroundPanels = [
   {
     src: "/aqua.png",
@@ -78,7 +78,6 @@ export default function Home() {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            {/* UPDATED: Changed bg to Espeon lilac/lavender (#D8A9D8) */}
             className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#D8A9D8] px-6"
           >
             {/* Blurred image focusing card */}
@@ -108,7 +107,6 @@ export default function Home() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 0.7, y: 0 }}
               transition={{ delay: 0.6, duration: 1 }}
-              {/* UPDATED: Darkened caption text slightly for clean contrast against lavender */}
               className="mt-6 text-[10px] md:text-[11px] font-medium tracking-widest uppercase text-[#3c2a3e]"
             >
               Entering Experience...
