@@ -11,10 +11,10 @@ interface PageProps {
   }>;
 }
 
-// 1. Custom content, GIFs, marquee text, and blog content for each slug
+// 1. Custom content, GIFs, marquee text, blog content, and quotes for each slug
 const subpageData: Record<
   string,
-  { gifSrc: string; alt: string; title: string; marqueeText: string; body: string }
+  { gifSrc: string; alt: string; title: string; marqueeText: string; body: string; quote?: string }
 > = {
   aqua: {
     gifSrc: "/aqua.gif",
@@ -30,6 +30,7 @@ I think I envisioned this as being a space that I could decorate and adorn with 
 Anyways, the immediate 2-3 week goal of this website is just to be a repository for where I am right now–the things that are on my mind, the interests I currently have or the hobbies I’d like to pursue but likely never will, at least at the rate that I’m going. I’d be remiss if I were to treat this as a meaningful discussion with you, the viewer. After all, it’s probably more than a little off-putting, picking at the scabs of your soul tissue to strangers through the medium of a webpage without seeming either overwhelmingly pretentious or just… deeply and profoundly sad. Probably both in this case. 
 
 As of time of writing, the actual contents of these subpages are under construction, although I suspect that I’ll begin populating them over the coming weeks, so long as my boredom is not overtaken by neuroticism. Maybe by the end of this, I’ll have a clearer picture of myself. Maybe you will too, with any luck.`,
+    quote: "“God has abandoned us, but we will enjoy it.” -Pyosik",
   },
   akane: {
     gifSrc: "/akane.gif",
@@ -37,6 +38,7 @@ As of time of writing, the actual contents of these subpages are under construct
     title: "Me",
     marqueeText: "AKANE KUROKAWA — VISUAL EXPERIENCE — GALLERY — ",
     body: "Coming soon :p",
+    quote: "“It’s unbearable to have your identity summed up by one thing and one thing only and for other people to have control over what that is.” -Keiichiro Hirano",
   },
   ruby: {
     gifSrc: "/ruby.gif",
@@ -44,6 +46,7 @@ As of time of writing, the actual contents of these subpages are under construct
     title: "Interests",
     marqueeText: "RUBY HOSHINO — VISUAL EXPERIENCE — GALLERY — ",
     body: "Coming soon :p",
+    quote: "“Lies are the most exquisite love!” -Ai Hoshino",
   },
   memcho: {
     gifSrc: "/mem.gif", 
@@ -51,13 +54,15 @@ As of time of writing, the actual contents of these subpages are under construct
     title: "People",
     marqueeText: "MEM-CHO — VISUAL EXPERIENCE — GALLERY — ",
     body: "Coming soon :p",
+    quote: "“Indeed- why should I not admit it? - at that moment, my heart was breaking.” -Kazuo Ishiguro",
   },
   kana: {
-    gifSrc: "/kana.gif", // Path to public/kana.gif
+    gifSrc: "/kana.gif", 
     alt: "Kana GIF",
     title: "Future",
     marqueeText: "KANA ARIMA — VISUAL EXPERIENCE — GALLERY — ",
     body: "Coming soon :p",
+    quote: "“So it was that for two minutes we sang with all our hearts, feeling only for the past and turning our gaze from the future, swimmers doing the backstroke toward a waterfall.” -Viet Thanh Nguyen",
   },
 };
 
@@ -94,10 +99,11 @@ export default function TabPage({ params }: PageProps) {
     title: `${slug} Page`,
     marqueeText: `${slug.toUpperCase()} — VISUAL EXPERIENCE — GALLERY — `,
     body: "Default blog content space. Add your custom paragraphs or notes here.",
+    quote: undefined,
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-[#D8A9D8] text-[#3c2a3e] flex flex-col items-center justify-start pt-20 pb-24 font-sans overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-[#D8A9D8] text-[#3c2a3e] flex flex-col items-center justify-start pt-20 pb-28 font-sans overflow-x-hidden">
       
       {/* -------------------------------------------------------------
           TOP-LEFT CLICKABLE LOGO (FIXED IN VIEWPORT FRAME)
@@ -170,9 +176,20 @@ export default function TabPage({ params }: PageProps) {
       </div>
 
       {/* -------------------------------------------------------------
+          UNBOXED WIDER QUOTE SECTION
+          ------------------------------------------------------------- */}
+      {pageContent.quote && (
+        <div className="w-full max-w-3xl px-6 my-8 text-center z-10">
+          <blockquote className="font-serif italic text-lg md:text-2xl leading-relaxed text-[#1e0e24] tracking-wide">
+            {pageContent.quote}
+          </blockquote>
+        </div>
+      )}
+
+      {/* -------------------------------------------------------------
           CONTACT ME MAILTO LINK
           ------------------------------------------------------------- */}
-      <div className="z-10 pt-4">
+      <div className="z-10 pt-2">
         <a
           href="mailto:deeradobe@gmail.com"
           className="text-[11px] font-semibold tracking-widest uppercase text-[#3c2a3e] hover:text-black transition-colors underline underline-offset-4"
