@@ -11,10 +11,18 @@ interface PageProps {
   }>;
 }
 
-// 1. Custom content, GIFs, marquee text, blog content, and quotes for each slug
+// 1. Custom content, GIFs, marquee text, blog content, quotes, and sign-offs for each slug
 const subpageData: Record<
   string,
-  { gifSrc: string; alt: string; title: string; marqueeText: string; body: string; quote?: string }
+  { 
+    gifSrc: string; 
+    alt: string; 
+    title: string; 
+    marqueeText: string; 
+    body: string; 
+    quote?: string;
+    signoff?: string;
+  }
 > = {
   aqua: {
     gifSrc: "/aqua.gif",
@@ -31,14 +39,28 @@ Anyways, the immediate 2-3 week goal of this website is just to be a repository 
 
 As of time of writing, the actual contents of these subpages are under construction, although I suspect that I’ll begin populating them over the coming weeks, so long as my boredom is not overtaken by neuroticism. Maybe by the end of this, I’ll have a clearer picture of myself. Maybe you will too, with any luck.`,
     quote: "“God has abandoned us, but we will enjoy it.” -Pyosik",
+    signoff: "Deng, 8/3/2026",
   },
   akane: {
     gifSrc: "/akane.gif",
     alt: "Akane GIF",
     title: "Me",
     marqueeText: "AKANE KUROKAWA — VISUAL EXPERIENCE — GALLERY — ",
-    body: "Coming soon :p",
+    body: `A line that I’ve spammed at many a retreat (or at least it feels like I’ve spammed it), is that I have a very tenuous grip on my sense of self. When I talk about a sense of self, I think what I mean is the idea of a throughline that cuts through to uniquely me, and no one else. 
+    
+Maybe unsurprisingly, this has been rather difficult to come by. Off the top of my head, I could list the various traits, interests, and influences until they form a 1/1 category all for myself, but even then, I’m sure that there’s at least one other mostly-milquetoast-liberal-Asian-twenty-something-chemistry-major-from-southern-California-who-played-piano-and-Minecraft-and-now-has-few-hobbies out there. And also, that sort of approach to self-definition feels a bit unsatisfactory–it makes me feel less like a person and more a loose collection of character flaws (insert eagle catching baseball image). 
+    
+As someone whose immediate intuition towards understanding things is the piecing up and subsequent reconstruction of a whole, sorta like rebuilding a cheese wheel from charcuterie board cubes, this is quite frustrating. I’m tempted to pin the solution as a je ne sais quoi specific to my soul, but I also suspect that I may simply not have all of the cheese cubes collected yet. 
+
+Chiefly among these (likely many) missing pieces is why I like the people and things that I do (or don’t). What makes me blast through both Frieren seasons in two days whereas WHA feels like an episode-per-day affair? Why do I love I<3Harajuku even if it sounds a little objectively hilarious? Did the creators engineer my feelings and responses in their creation of art, or are my reactions emblematic only of a self-projection in response to a static creation? I don’t think that makes sense upon reading, but maybe you hear what I’m trying to say. 
+
+Anyways. All of this is to say that I yearn for an identity, or at least the watermark of one. I yearn for stories and experiences to capture and remember and look back upon if not for their content but for how I felt and maybe, just maybe, glean some sense of the self who lived the story and know that it was mine and mine alone.
+
+It’s obvious to me that the internet is a major factor in my sense of disconnection, what with the whole uploading of all of conscious human experience and all that. I wonder how many of the pieces of the squares I sew onto the patchwork quilt of myself are those that I found wandering the road, and how many were fed to me via the digital vending machine. Internet doesn’t seem to be going anywhere though, so I guess I best strap in anyways.
+
+Here’s to being more nonchalant and gafing less~`,
     quote: "“It’s unbearable to have your identity summed up by one thing and one thing only and for other people to have control over what that is.” -Keiichiro Hirano",
+    signoff: "-Deng, 8/4/2026",
   },
   ruby: {
     gifSrc: "/ruby.gif",
@@ -100,6 +122,7 @@ export default function TabPage({ params }: PageProps) {
     marqueeText: `${slug.toUpperCase()} — VISUAL EXPERIENCE — GALLERY — `,
     body: "Default blog content space. Add your custom paragraphs or notes here.",
     quote: undefined,
+    signoff: undefined,
   };
 
   return (
@@ -166,10 +189,10 @@ export default function TabPage({ params }: PageProps) {
             {pageContent.body}
           </p>
           
-          {/* Right-aligned sign-off matching the image */}
-          {slug === "aqua" && (
+          {/* Right-aligned sign-off */}
+          {pageContent.signoff && (
             <p className="mt-8 text-right text-xs md:text-sm font-medium tracking-wider text-[#3c2a3e]/80">
-              Deng, 8/3/2026
+              {pageContent.signoff}
             </p>
           )}
         </div>
