@@ -19,7 +19,7 @@ const subpageData: Record<
     alt: string; 
     title: string; 
     marqueeText: string; 
-    body: string; 
+    body: React.ReactNode; 
     quote?: string;
     signoff?: string;
   }
@@ -67,8 +67,71 @@ Here’s to being more nonchalant and gafing less~`,
     alt: "Ruby GIF",
     title: "Interests",
     marqueeText: "RUBY HOSHINO — VISUAL EXPERIENCE — GALLERY — ",
-    body: "Coming soon :p",
+    body: (
+      <>
+        <p className="mb-4">
+          I always have such a difficult time answering the question of what my hobbies are. Fundamentally, I feel like I don’t really do things that everyone else already does, practically by default. Like is there anyone who doesn’t read, listen to music, and watch movies/TV/Youtube/anime? If there’s any variation that I bring, it’s probably that I semi-autistically log every piece of media I consume, as if these experiences will wither without proper preservation. As such, logging website spam go!!!{" "}
+          <a
+            href="https://letterboxd.com/dengdeng/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 dark:text-blue-400 underline hover:opacity-80 transition-opacity"
+          >
+            Letterboxd
+          </a>
+          ,{" "}
+          <a
+            href="https://www.goodreads.com/user/show/157118182-saizo-taniguchi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 dark:text-blue-400 underline hover:opacity-80 transition-opacity"
+          >
+            Goodreads
+          </a>
+          ,{" "}
+          <a
+            href="https://myanimelist.net/profile/Kiriiiiiyn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 dark:text-blue-400 underline hover:opacity-80 transition-opacity"
+          >
+            MAL
+          </a>
+          ,{" "}
+          <a
+            href="https://beliapp.co/app/kiriyn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 dark:text-blue-400 underline hover:opacity-80 transition-opacity"
+          >
+            Beli
+          </a>
+          ,{" "}
+          <a
+            href="https://open.spotify.com/user/89puvxp0koop07xy3hne2b4w9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 dark:text-blue-400 underline hover:opacity-80 transition-opacity"
+          >
+            Spotify
+          </a>
+        </p>
+        <p className="mb-4">
+          Over time, I’ve probably dropped more occupations than I picked up, chief among them being piano and Minecraft, which in tandem occupied the vast majority of an exceedingly chill high school life. Although I’m not sure if I’ve really kicked the Minecraft habit–I played again for the first time 3 days ago and I’ve logged 30 hours in the days since. My grades probably thank the lord every day for my choice in not taking the full desktop setup. Old man still got hands though.
+        </p>
+        <p className="mb-4">
+          I do wonder what it exactly is about Minecraft that still captivates me, but honestly it’s probably just the superiority complex-derived dopamine from stunting on 12 year old shitters who care much less about their skywars games than I do, along with a smidge of nostalgia for the pandemic peaks of the game. Maybe that’s immature of me. But I’m only here for another 2 weeks this summer anyways, so I think I’ll indulge myself regardless.
+        </p>
+        <p className="mb-4">
+          I think I should get into biking and birdwatching or some shit.
+        </p>
+        <p>
+          Cool artists I’m listening to at time of writing: Yeule, Daine, Ninajirachi, Underscores, ILLIT, Kllo, MCR
+        </p>
+      </>
+    ),
     quote: "“Lies are the most exquisite love!” -Ai Hoshino",
+    signoff: "-Deng, 8/7/2026",
   },
   memcho: {
     gifSrc: "/mem.gif", 
@@ -185,9 +248,9 @@ export default function TabPage({ params }: PageProps) {
           ------------------------------------------------------------- */}
       <div className="w-full max-w-2xl px-6 my-4 z-10">
         <div className="bg-purple-900/5 backdrop-blur-sm border border-purple-900/10 rounded-2xl p-6 md:p-8 shadow-sm">
-          <p className="text-sm md:text-base leading-relaxed tracking-wide text-[#3c2a3e]/90 whitespace-pre-wrap font-sans">
+          <div className="text-sm md:text-base leading-relaxed tracking-wide text-[#3c2a3e]/90 font-sans whitespace-pre-wrap">
             {pageContent.body}
-          </p>
+          </div>
           
           {/* Right-aligned sign-off */}
           {pageContent.signoff && (
